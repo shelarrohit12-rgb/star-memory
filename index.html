@@ -7,15 +7,14 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
       background: black;
       color: white;
+      font-family: Arial, sans-serif;
     }
 
     .section {
       height: 50vh;
       position: relative;
-      border-bottom: 1px solid #222;
     }
 
     iframe {
@@ -26,95 +25,83 @@
 
     .overlay {
       position: absolute;
-      top: 12px;
-      left: 12px;
-      background: rgba(0,0,0,0.65);
-      padding: 12px;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.35);
+      padding: 10px;
       border-radius: 10px;
-      max-width: 80%;
+      text-align: right;
+      backdrop-filter: blur(4px);
     }
 
     .title {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: bold;
     }
 
-    .subtitle {
-      font-size: 13px;
-      opacity: 0.8;
-      margin-top: 3px;
-    }
-
     .timer {
-      font-size: 14px;
-      margin-top: 6px;
+      font-size: 13px;
+      margin-top: 4px;
     }
 
     .hint {
-      font-size: 12px;
-      margin-top: 6px;
+      font-size: 11px;
       opacity: 0.7;
+      margin-top: 4px;
     }
   </style>
 </head>
 
 <body>
 
-<!-- 🌿 Spica Section -->
+<!-- 🌿 Spica -->
 <div class="section">
-  <iframe src="https://stellarium-web.org"></iframe>
+  <iframe src="https://stellarium-web.org/skysource/spica"></iframe>
 
   <div class="overlay">
     <div class="title">Spica 🌿</div>
-    <div class="subtitle">May night sky</div>
     <div class="timer" id="spicaTimer"></div>
-    <div class="hint">Tap 🔍 and search "Spica"</div>
+    <div class="hint">Tap sky → allow location</div>
   </div>
 </div>
 
-<!-- 👁️ Aldebaran Section -->
+<!-- 👁️ Aldebaran -->
 <div class="section">
-  <iframe src="https://stellarium-web.org"></iframe>
+  <iframe src="https://stellarium-web.org/skysource/aldebaran"></iframe>
 
   <div class="overlay">
     <div class="title">Aldebaran 👁️</div>
-    <div class="subtitle">Her star</div>
     <div class="timer" id="aldebaranTimer"></div>
-    <div class="hint">Tap 🔍 and search "Aldebaran"</div>
+    <div class="hint">Tap sky → allow location</div>
   </div>
 </div>
 
 <script>
-function countdown(targetMonth, targetDay, elementId) {
+function countdown(month, day, id) {
   function update() {
     const now = new Date();
     let year = now.getFullYear();
+    let target = new Date(year, month, day);
 
-    let target = new Date(year, targetMonth, targetDay);
-
-    // if date passed this year → next year
     if (target < now) {
-      target = new Date(year + 1, targetMonth, targetDay);
+      target = new Date(year + 1, month, day);
     }
 
     const diff = target - now;
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
 
-    document.getElementById(elementId).innerText =
-      days + " days " + hours + " hrs remaining";
+    document.getElementById(id).innerText =
+      d + "d " + h + "h remaining";
   }
 
   update();
   setInterval(update, 60000);
 }
 
-// 🌿 May 7 (her birthday sky)
-countdown(4, 7, "spicaTimer");   // Month index starts from 0 → 4 = May
-
-// 👁️ Feb 14 (your birthday / Aldebaran season)
-countdown(1, 14, "aldebaranTimer");
+countdown(4, 7, "spicaTimer");   // May 7
+countdown(1, 14, "aldebaranTimer"); // Feb 14
 </script>
 
 </body>
