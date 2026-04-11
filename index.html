@@ -25,9 +25,9 @@
 
     .overlay {
       position: absolute;
-      bottom: 12px;
+      bottom: 65px; /* adjusted so it doesn't block controls */
       right: 12px;
-      background: rgba(0, 0, 0, 0.35);
+      background: rgba(0, 0, 0, 0.28);
       padding: 10px;
       border-radius: 10px;
       text-align: right;
@@ -39,15 +39,15 @@
       font-weight: bold;
     }
 
-    .timer {
-      font-size: 13px;
-      margin-top: 4px;
+    .subtitle {
+      font-size: 12px;
+      opacity: 0.8;
+      margin-top: 2px;
     }
 
-    .hint {
-      font-size: 11px;
-      opacity: 0.7;
-      margin-top: 4px;
+    .timer {
+      font-size: 13px;
+      margin-top: 5px;
     }
   </style>
 </head>
@@ -60,8 +60,8 @@
 
   <div class="overlay">
     <div class="title">Spica 🌿</div>
+    <div class="subtitle">May Night Star</div>
     <div class="timer" id="spicaTimer"></div>
-    <div class="hint">Tap sky → allow location</div>
   </div>
 </div>
 
@@ -71,8 +71,8 @@
 
   <div class="overlay">
     <div class="title">Aldebaran 👁️</div>
+    <div class="subtitle">Her Star</div>
     <div class="timer" id="aldebaranTimer"></div>
-    <div class="hint">Tap sky → allow location</div>
   </div>
 </div>
 
@@ -100,8 +100,11 @@ function countdown(month, day, id) {
   setInterval(update, 60000);
 }
 
-countdown(4, 7, "spicaTimer");   // May 7
-countdown(1, 14, "aldebaranTimer"); // Feb 14
+// 🌿 Her birthday (May 7)
+countdown(4, 7, "spicaTimer");
+
+// 👁️ Your birthday / Aldebaran season (Feb 14)
+countdown(1, 14, "aldebaranTimer");
 </script>
 
 </body>
