@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Our Sky</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: black;
+      color: white;
+    }
+
+    .section {
+      height: 50vh;
+      position: relative;
+      border-bottom: 1px solid #222;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(0,0,0,0.65);
+      padding: 12px;
+      border-radius: 10px;
+      max-width: 80%;
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      opacity: 0.8;
+      margin-top: 3px;
+    }
+
+    .timer {
+      font-size: 14px;
+      margin-top: 6px;
+    }
+
+    .hint {
+      font-size: 12px;
+      margin-top: 6px;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- 🌿 Spica Section -->
+<div class="section">
+  <iframe src="https://stellarium-web.org"></iframe>
+
+  <div class="overlay">
+    <div class="title">Spica 🌿</div>
+    <div class="subtitle">May night sky</div>
+    <div class="timer" id="spicaTimer"></div>
+    <div class="hint">Tap 🔍 and search "Spica"</div>
+  </div>
+</div>
+
+<!-- 👁️ Aldebaran Section -->
+<div class="section">
+  <iframe src="https://stellarium-web.org"></iframe>
+
+  <div class="overlay">
+    <div class="title">Aldebaran 👁️</div>
+    <div class="subtitle">Her star</div>
+    <div class="timer" id="aldebaranTimer"></div>
+    <div class="hint">Tap 🔍 and search "Aldebaran"</div>
+  </div>
+</div>
+
+<script>
+function countdown(targetMonth, targetDay, elementId) {
+  function update() {
+    const now = new Date();
+    let year = now.getFullYear();
+
+    let target = new Date(year, targetMonth, targetDay);
+
+    // if date passed this year → next year
+    if (target < now) {
+      target = new Date(year + 1, targetMonth, targetDay);
+    }
+
+    const diff = target - now;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+
+    document.getElementById(elementId).innerText =
+      days + " days " + hours + " hrs remaining";
+  }
+
+  update();
+  setInterval(update, 60000);
+}
+
+// 🌿 May 7 (her birthday sky)
+countdown(4, 7, "spicaTimer");   // Month index starts from 0 → 4 = May
+
+// 👁️ Feb 14 (your birthday / Aldebaran season)
+countdown(1, 14, "aldebaranTimer");
+</script>
+
+</body>
+</html>
