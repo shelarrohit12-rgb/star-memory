@@ -25,7 +25,7 @@
 
     .overlay {
       position: absolute;
-      bottom: 65px; /* adjusted so it doesn't block controls */
+      bottom: 65px;
       right: 12px;
       background: rgba(0, 0, 0, 0.28);
       padding: 10px;
@@ -54,14 +54,14 @@
 
 <body>
 
-<!-- 🌿 Spica -->
+<!-- 🔴 Antares -->
 <div class="section">
-  <iframe src="https://stellarium-web.org/skysource/spica"></iframe>
+  <iframe src="https://stellarium-web.org/skysource/antares"></iframe>
 
   <div class="overlay">
-    <div class="title">Spica 🌿</div>
+    <div class="title">Antares 🔴</div>
     <div class="subtitle">May Night Star</div>
-    <div class="timer" id="spicaTimer"></div>
+    <div class="timer" id="antaresTimer"></div>
   </div>
 </div>
 
@@ -100,10 +100,10 @@ function countdown(month, day, id) {
   setInterval(update, 60000);
 }
 
-// 🌿 Her birthday (May 7)
-countdown(4, 7, "spicaTimer");
+// 🔴 May 7 (her birthday night)
+countdown(4, 7, "antaresTimer");
 
-// 👁️ Your birthday / Aldebaran season (Feb 14)
+// 👁️ Feb 14 (your birthday / Aldebaran season)
 countdown(1, 14, "aldebaranTimer");
 </script>
 
